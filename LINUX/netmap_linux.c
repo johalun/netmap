@@ -603,7 +603,7 @@ nm_os_catch_rx(struct netmap_generic_adapter *gna, int intercept)
 static u16
 generic_ndo_select_queue(struct ifnet *ifp, struct mbuf *m
 #if NETMAP_LINUX_SELECT_QUEUE >= 3
-			, NETMAP_LINUX_SELECT_QUEUE_PARM3 accel_priv
+			, struct net_device* accel_priv
 #if NETMAP_LINUX_SELECT_QUEUE >= 4
 				, select_queue_fallback_t fallback
 #endif /* >= 4 */
@@ -1213,7 +1213,7 @@ linux_netmap_poll(struct file *file, struct poll_table_struct *pwait)
 	return netmap_poll(priv, events, &sr);
 }
 
-static int
+static vm_fault_t
 #ifdef NETMAP_LINUX_HAVE_FAULT_VMA_ARG
 linux_netmap_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 {

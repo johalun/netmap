@@ -10,7 +10,7 @@ VPATH = $(SRCDIR)/apps/pkt-gen
 
 NO_MAN=
 CFLAGS = -O2 -pipe
-CFLAGS += -Werror -Wall -Wunused-function
+CFLAGS += -Werror -Wall -Wunused-function -Wno-error=cpp
 CFLAGS += -I $(SRCDIR)/sys -I $(SRCDIR)/apps/include
 CFLAGS += -Wextra
 
